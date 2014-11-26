@@ -1,0 +1,50 @@
+class Solution {
+//hate this question.
+
+
+public:
+ int divide(int dividend, int divisor){
+      int a, b;
+      int ao = 0;
+      int bo = 0;
+      
+      if (dividend==-2147483648){
+          a = 2147483647;
+          ao = 1;
+      }else{
+          a = abs(dividend);
+      }
+      
+      if (divisor==-2147483648){
+          if(dividend==-2147483648){
+              return 1;
+          }else{
+              return 0;
+          }
+      }else{
+          b = abs(divisor);
+      }
+
+    int res = 0;
+    int c;
+    int t;
+    while(a>=(b-ao)){
+      c = 0;
+      t = b;
+      while(a>=(t-ao) && ((t>0&&b>0) || (t<0&&b<0))){
+        a-=t;
+        res += 1<<c;
+        t = t<<1;
+        c++;
+      }
+    }
+
+    if((dividend>0 && divisor>0)||(dividend<0 && divisor<0)){
+      return res;
+    }else{
+      return 0-res;
+    }
+
+  }
+
+};
